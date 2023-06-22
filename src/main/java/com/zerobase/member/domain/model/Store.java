@@ -1,20 +1,21 @@
-package com.zerobase.reservation.entity;
+package com.zerobase.member.domain.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@NoArgsConstructor
-@EnableJpaAuditing
-@EntityListeners(AuditingEntityListener.class)
+@Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class Store {
 
     @Id
+    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long storeId;
     @Column(nullable = false)
