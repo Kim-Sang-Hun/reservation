@@ -1,5 +1,6 @@
 package com.zerobase.member.domain.model;
 
+import com.zerobase.member.domain.BaseEntity;
 import com.zerobase.member.domain.SignUpForm;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @ToString
-public class User {
+public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

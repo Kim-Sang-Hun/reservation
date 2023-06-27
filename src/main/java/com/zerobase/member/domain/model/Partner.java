@@ -1,5 +1,6 @@
 package com.zerobase.member.domain.model;
 
+import com.zerobase.member.domain.BaseEntity;
 import com.zerobase.member.domain.SignUpForm;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Partner {
+public class Partner extends BaseEntity {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

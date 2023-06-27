@@ -29,6 +29,10 @@ public class SignUpServiceImpl implements SignUpService {
     }
     @Override
     public boolean signUpPartner(SignUpForm form) {
+        Optional<Partner> optionalPartner = partnerRepository.findByUsername(form.getUsername());
+        if (optionalPartner.isPresent()) {
+            return false;
+        }
         Partner partner = Partner.buildPartner(form);
         partnerRepository.save(partner);
         return true;

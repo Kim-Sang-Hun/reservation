@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 가입</title>
+</head>
+<body>
+    <h1>회원 가입</h1>
+    <form method="post" action="signup_complete.html">
+      <input type="text" name="username" placeholder="아이디를 입력해주세요." required>
+      <br>
+      <input type="text" name="password" placeholder="비밀번호를 입력해주세요." required>
+      <br>
+      <div>
+          <input type="radio" name="memberType" value="user" checked> 일반회원
+          <input type="radio" name="memberType" value="partner"> 파트너
+      </div>
+      <div>
+        <button>회원 가입</button>
+      </div>
+    </form>
+</body>
+</html>
