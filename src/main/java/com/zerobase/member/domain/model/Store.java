@@ -24,5 +24,5 @@ public class Store {
     private String storeLocation;
     private String storeDescription;
     @OneToOne(mappedBy = "store")
-    private Partner partner;
+    private Member member;
 }

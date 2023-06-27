@@ -2,10 +2,8 @@ package com.zerobase.member.domain.model;
 
 import com.zerobase.member.domain.BaseEntity;
 import com.zerobase.member.domain.SignUpForm;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.persistence.*;
 
@@ -14,24 +12,28 @@ import javax.persistence.*;
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Partner extends BaseEntity {
+@ToString
+public class Member extends BaseEntity {
     @Id
-    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
     private String username;
     @Column(nullable = false)
     private String password;
+    private String memberType;
 
     @OneToOne
     @JoinColumn(name = "store_id")
     private Store store;
 
-    public static Partner buildPartner(SignUpForm form) {
-        return Partner.builder()
+    public static Member buildUser(SignUpForm form) {
+        String encPassword = BCrypt.hashpw(form.getPassword(), BCrypt.gensalt());
+        return Member.builder()
                 .username(form.getUsername())
-                .password(form.getPassword())
+                .password(encPassword)
+                .memberType(form.getMemberType())
                 .build();
     }
+
 }
