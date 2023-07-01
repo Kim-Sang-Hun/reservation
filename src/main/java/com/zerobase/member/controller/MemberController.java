@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 @Controller
 @RequestMapping(value = "/member")
 @RequiredArgsConstructor
@@ -29,17 +26,11 @@ public class MemberController {
         return "member/signup";
     }
 
-
     @PostMapping(value = "/signup")
-    public String signUpSubmit(HttpServletRequest request, HttpServletResponse response
-            , SignUpForm signUpForm) {
-        String username = signUpForm.getUsername();
-        String password = signUpForm.getPassword();
-        String memberType = signUpForm.getMemberType();
-
-        signUpServiceImpl.signUp(signUpForm);
-
-
+    public String signUpSubmit(SignUpForm signUpForm) {
+        if (!signUpServiceImpl.signUp(signUpForm)) {
+            return "member/signup_failure";
+        }
         return "member/signup_complete";
     }
 

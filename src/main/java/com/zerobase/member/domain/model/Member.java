@@ -1,7 +1,8 @@
 package com.zerobase.member.domain.model;
 
-import com.zerobase.member.domain.BaseEntity;
+import com.zerobase.domain.BaseEntity;
 import com.zerobase.member.domain.SignUpForm;
+import com.zerobase.store.domain.model.Store;
 import lombok.*;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
@@ -22,12 +23,11 @@ public class Member extends BaseEntity {
     @Column(nullable = false)
     private String password;
     private String memberType;
-
     @OneToOne
     @JoinColumn(name = "store_id")
     private Store store;
 
-    public static Member buildUser(SignUpForm form) {
+    public static Member from(SignUpForm form) {
         String encPassword = BCrypt.hashpw(form.getPassword(), BCrypt.gensalt());
         return Member.builder()
                 .username(form.getUsername())

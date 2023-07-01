@@ -1,4 +1,4 @@
-package com.zerobase.member.domain;
+package com.zerobase.domain;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

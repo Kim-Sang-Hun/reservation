@@ -27,7 +27,7 @@ public class MemberServiceImpl implements MemberService {
         if (optionalUser.isPresent()) {
             return false;
         }
-        Member member = Member.buildUser(form);
+        Member member = Member.from(form);
         memberRepository.save(member);
         return true;
     }
