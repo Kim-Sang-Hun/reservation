@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class UploadForm {
+public class UploadStoreForm {
     private String storeName;
     private String storeLocation;
     private String storeDescription;

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>매장 검색 결과</title>
+</head>
+<body>
+    <h1>매장 검색 결과</h1>
+    <table>
+      <tr th:each="store : ${storeList}">
+          <td th:text="${store.getStoreName()}"></td>
+          <td th:text="${store.getStoreLocation()}"></td>
+          <td th:text="${store.getStoreDescription()}"></td>
+          <td>
+              <button id="storeId" th:value="${store.getStoreId()}" onclick="location.href='reservation'">예약하기</button>
+          </td>
+      </tr>
+    </table>
+</body>
+</html>

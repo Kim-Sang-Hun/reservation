@@ -1,10 +1,12 @@
 package com.zerobase.store.domain.model;
 
+import com.zerobase.domain.BaseEntity;
 import com.zerobase.member.domain.model.Member;
-import com.zerobase.store.domain.UploadForm;
+import com.zerobase.store.domain.UploadStoreForm;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -12,21 +14,21 @@ import javax.persistence.*;
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Store {
+public class Store extends BaseEntity {
 
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long storeId;
-    @Column(nullable = false)
     private String storeName;
-    @Column(nullable = false)
     private String storeLocation;
     private String storeDescription;
+    @OneToMany(mappedBy = "store")
+    private List<Reservation> reservation;
     @OneToOne(mappedBy = "store")
     private Member member;
 
-    public static Store from(UploadForm form) {
+    public static Store from(UploadStoreForm form) {
         return Store.builder()
                 .storeName(form.getStoreName())
                 .storeLocation(form.getStoreLocation())
