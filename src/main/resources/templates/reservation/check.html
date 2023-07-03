@@ -13,6 +13,12 @@
         <td th:text="${reservation.getStore().getStoreDescription()}"></td>
         <td th:text="${reservation.getReservationDateTime()}"></td>
         <td th:text="${reservation.getStatus()}"></td>
+        <td th:text="${reservation.isValidation()}"></td>
+        <td>
+            <form method="get" action="/review/upload">
+                <button type="submit" name="reservationId" th:value="${reservation.getReservationId()}">리뷰 작성</button>
+            </form>
+        </td>
     </tr>
 </table>
 </body>

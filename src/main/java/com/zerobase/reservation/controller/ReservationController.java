@@ -22,8 +22,9 @@ public class ReservationController {
     private final MemberServiceImpl memberService;
 
     @GetMapping(value = "/reservation")
-    public String reservation(@RequestParam Long storeId, Model model) {
+    public String reservation(@RequestParam Long storeId, Model model, Authentication authentication) {
         model.addAttribute("storeId", storeId);
+        model.addAttribute("username", authentication.getName());
         return "reservation/reservation";
     }
 
@@ -64,6 +65,8 @@ public class ReservationController {
             reservationService.manageReservation(reservationId, "예약 승낙");
         } else if (manage.equals("reject")) {
             reservationService.manageReservation(reservationId, "예약 거절");
+        } else if (manage.equals("valid")) {
+            reservationService.validation(reservationId, true);
         }
         return "/main/partner";
     }

@@ -8,4 +8,5 @@ import org.springframework.stereotype.Service;
 public interface MemberService extends UserDetailsService {
     default boolean signUp(SignUpForm form) {return false;}
     default Long getUserId(String username) {return null;}
+    default String getMemberType(String username) {return null;}
 }

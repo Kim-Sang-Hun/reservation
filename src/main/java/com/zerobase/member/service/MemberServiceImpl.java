@@ -38,6 +38,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public String getMemberType(String username) {
+        return memberRepository.getByUsername(username).getMemberType();
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Member> optionalMember = memberRepository.findByUsername(username);
         if (optionalMember.isEmpty()) {
@@ -47,8 +52,7 @@ public class MemberServiceImpl implements MemberService {
         Member member = optionalMember.get();
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_PARTNER"));
-
+        grantedAuthorities.add(new SimpleGrantedAuthority(member.getMemberType()));
 
         return new User(member.getUsername(), member.getPassword(), grantedAuthorities);
     }

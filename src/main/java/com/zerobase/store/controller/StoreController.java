@@ -3,6 +3,7 @@ package com.zerobase.store.controller;
 import com.zerobase.store.domain.UploadStoreForm;
 import com.zerobase.store.service.StoreServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,8 @@ public class StoreController {
     private final StoreServiceImpl storeService;
 
     @GetMapping(value = "/upload")
-    public String upload() {
+    public String upload(Authentication authentication, Model model) {
+        model.addAttribute("username", authentication.getName());
         return "store/upload";
     }
 
@@ -26,7 +28,6 @@ public class StoreController {
         if (!storeService.uploadStore(uploadStoreForm)) {
             return "store/upload_failure";
         }
-        // 업로드 했는데 유저아이디에 스토어아이디가 없는 문제 발생.
         return "store/upload_complete";
     }
 

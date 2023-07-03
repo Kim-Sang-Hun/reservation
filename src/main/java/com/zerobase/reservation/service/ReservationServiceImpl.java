@@ -61,9 +61,25 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    public boolean checkReservationValidity(Long reservationId) {
+        Reservation reservation = reservationRepository.getById(reservationId);
+        if (!reservation.isValidation()) {
+            return false;
+        }
+        return reservation.getReview() == null;
+    }
+
+    @Override
     public void manageReservation(Long reservationId, String status) {
         Reservation reservation = reservationRepository.getById(reservationId);
         reservation.setStatus(status);
+        reservationRepository.save(reservation);
+    }
+
+    @Override
+    public void validation(Long reservationId, boolean valid) {
+        Reservation reservation = reservationRepository.getById(reservationId);
+        reservation.setValidation(valid);
         reservationRepository.save(reservation);
     }
 }

@@ -35,6 +35,7 @@ public class StoreServiceImpl implements StoreService {
         store.setMember(member);
         member.setStore(store);
         storeRepository.save(store);
+        memberRepository.save(member);
         return true;
     }
 

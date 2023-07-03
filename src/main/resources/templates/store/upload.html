@@ -13,7 +13,7 @@
   <br>
   <input type="text" name="storeDescription" placeholder="매장에 대한 상세 정보를 입력해주세요." required>
   <br>
-  <input type="text" name="username" placeholder="파트너님의 아이디를 입력해주세요." required>
+  <input type="hidden" name="username" th:value="${username}">
   <br>
   <div>
     <button type="submit">매장 등록</button>
