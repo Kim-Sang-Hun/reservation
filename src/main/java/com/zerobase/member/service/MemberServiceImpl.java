@@ -31,6 +31,12 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.save(member);
         return true;
     }
+
+    @Override
+    public Long getUserId(String username) {
+        return memberRepository.getByUsername(username).getId();
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Member> optionalMember = memberRepository.findByUsername(username);

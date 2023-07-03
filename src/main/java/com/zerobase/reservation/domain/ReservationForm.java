@@ -1,14 +1,12 @@
-package com.zerobase.store.domain;
+package com.zerobase.reservation.domain;
 
 import lombok.Data;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
-
 @Data
 @ToString
 public class ReservationForm {
-    private LocalDateTime localDateTime;
+    private String localDateTime;
     private Long storeId;
     private String username;
 }

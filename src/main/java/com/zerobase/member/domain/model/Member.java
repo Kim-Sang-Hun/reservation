@@ -2,7 +2,7 @@ package com.zerobase.member.domain.model;
 
 import com.zerobase.domain.BaseEntity;
 import com.zerobase.member.domain.SignUpForm;
-import com.zerobase.store.domain.model.Reservation;
+import com.zerobase.reservation.domain.model.Reservation;
 import com.zerobase.store.domain.model.Store;
 import lombok.*;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -12,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor

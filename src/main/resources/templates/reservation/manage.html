@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>예약 확인</title>
+</head>
+<body>
+<h2>예약 확인 결과</h2>
+<table>
+  <tr th:each="reservation : ${reservationList}">
+    <td th:text="${reservation.getStore().getStoreName()}"></td>
+    <td th:text="${reservation.getStore().getStoreLocation()}"></td>
+    <td th:text="${reservation.getStore().getStoreDescription()}"></td>
+    <td th:text="${reservation.getReservationDateTime()}"></td>
+    <td th:text="${reservation.getStatus()}"></td>
+    <td>
+      <form method="post">
+        <input type="hidden" th:value="${reservation.getReservationId()}" name="reservationId">
+        <button type="submit" value="accept" name="manage">예약 승낙</button>
+        <button type="submit" value="reject" name="manage">예약 거절</button>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

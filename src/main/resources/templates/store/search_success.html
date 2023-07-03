@@ -12,7 +12,9 @@
           <td th:text="${store.getStoreLocation()}"></td>
           <td th:text="${store.getStoreDescription()}"></td>
           <td>
-              <button id="storeId" th:value="${store.getStoreId()}" onclick="location.href='reservation'">예약하기</button>
+              <form method="get" action="/reservation/reservation">
+                <button name="storeId" th:value="${store.getStoreId()}" type="submit">예약하기</button>
+              </form>
           </td>
       </tr>
     </table>

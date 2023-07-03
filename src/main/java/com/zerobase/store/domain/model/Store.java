@@ -2,6 +2,7 @@ package com.zerobase.store.domain.model;
 
 import com.zerobase.domain.BaseEntity;
 import com.zerobase.member.domain.model.Member;
+import com.zerobase.reservation.domain.model.Reservation;
 import com.zerobase.store.domain.UploadStoreForm;
 import lombok.*;
 

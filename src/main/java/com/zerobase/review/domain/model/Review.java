@@ -1,6 +1,7 @@
-package com.zerobase.review.model;
+package com.zerobase.review.domain.model;
 
 import com.zerobase.domain.BaseEntity;
+import com.zerobase.reservation.domain.model.Reservation;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,4 +21,6 @@ public class Review extends BaseEntity {
     private double starRating;
     @Column(nullable = false)
     private String reviewDescription;
+    @OneToOne
+    private Reservation reservation;
 }

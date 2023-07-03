@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpSession;
-import java.time.LocalDateTime;
-
 @Controller
 @RequestMapping(value = "/store")
 @RequiredArgsConstructor
@@ -29,6 +26,7 @@ public class StoreController {
         if (!storeService.uploadStore(uploadStoreForm)) {
             return "store/upload_failure";
         }
+        // 업로드 했는데 유저아이디에 스토어아이디가 없는 문제 발생.
         return "store/upload_complete";
     }
 
@@ -44,25 +42,5 @@ public class StoreController {
             return "store/search_failure";
         }
         return "store/search_success";
-    }
-
-    @RequestMapping(value = "/reservation")
-    public String reservation() {
-        return "store/reservation";
-    }
-
-    @GetMapping(value = "/reservation")
-    public String reservation(HttpSession session, Model model) {
-        String storeId = (String) session.getAttribute("storeId");
-        model.addAttribute("storeId", storeId);
-        return "store/reservation";
-    }
-
-    @PostMapping(value = "/reservation")
-    public String reservationSubmit(
-            @RequestParam(value = "datetime") LocalDateTime dateTime,
-            @RequestParam(value = "storeId") Long storeId
-    ) {
-        return null;
     }
 }
